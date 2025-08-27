@@ -1,0 +1,36 @@
+controllerManager:
+  manager:
+    containerSecurityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      seccompProfile:
+        type: RuntimeDefault
+    env:
+      leaderElection: "true"
+      zapDevelopment: "true"
+      zapLogLevel: "-5"
+    image:
+      repository: europe-central2-docker.pkg.dev/miko-gke-650/miko/kube-startup-cpu-boost
+      tag: dev
+    imagePullPolicy: Always
+    resources:
+      limits:
+        cpu: 500m
+        memory: 128Mi
+      requests:
+        cpu: 10m
+        memory: 64Mi
+  podSecurityContext:
+    runAsNonRoot: true
+  replicas: 1
+  serviceAccount:
+    annotations: {}
+kubernetesClusterDomain: cluster.local
+webhookService:
+  ports:
+  - port: 443
+    protocol: TCP
+    targetPort: 9443
+  type: ClusterIP
