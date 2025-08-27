@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "mychart.fullname" . }}-controller-manager
+  name: kube-startup-cpu-boost-controller-manager
   labels:
     app.kubernetes.io/component: manager
     app.kubernetes.io/created-by: kube-startup-cpu-boost
     app.kubernetes.io/part-of: kube-startup-cpu-boost
     control-plane: controller-manager
-  {{- include "mychart.labels" . | nindent 4 }}
+  {{- include "kube-startup-cpu-boost.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.controllerManager.replicas }}
   selector:
     matchLabels:
       control-plane: controller-manager
-    {{- include "mychart.selectorLabels" . | nindent 6 }}
+    {{- include "kube-startup-cpu-boost.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
         control-plane: controller-manager
-      {{- include "mychart.selectorLabels" . | nindent 8 }}
+      {{- include "kube-startup-cpu-boost.selectorLabels" . | nindent 8 }}
       annotations:
         kubectl.kubernetes.io/default-container: manager
     spec:
@@ -84,10 +84,10 @@ spec:
           readOnly: true
       securityContext: {{- toYaml .Values.controllerManager.podSecurityContext | nindent
         8 }}
-      serviceAccountName: {{ include "mychart.fullname" . }}-controller-manager
+      serviceAccountName: kube-startup-cpu-boost-controller-manager
       terminationGracePeriodSeconds: 10
       volumes:
       - name: cert
         secret:
           defaultMode: 420
-          secretName: {{ include "mychart.fullname" . }}-webhook-secret
+          secretName: kube-startup-cpu-boost-webhook-secret
