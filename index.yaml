@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  kube-startup-cpu-boost:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2025-08-27T10:27:14.472290135Z"
+    description: A Helm chart for kube-startup-cpu-boost
+    digest: 5bdc38d64c4985cf2431db4512b52a20d5987b92c6751e845c00144fc855c813
+    name: kube-startup-cpu-boost
+    type: application
+    urls:
+    - https://github.com/mikouaj/helm-releaser-test/releases/download/kube-startup-cpu-boost-0.1.0/kube-startup-cpu-boost-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-08-27T10:27:14.472296026Z"
